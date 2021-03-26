@@ -1,0 +1,78 @@
+<div id="app">
+    <video autoplay="" muted="" loop="" class="min-vh-80 min-vw-100">
+        <source src="assets/vid.mp4" type="video/mp4">
+    </video>
+
+    <div class="container mld-ldo card-img-overlay" id="livre-d-or">
+        <div class="row ">
+            <div class="col-sm mld-ldo-head">
+                <h1>Le Livre D'Or</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <div v-for="todo in todos">
+                    <h4> {{ todo.pseudo }} : {{ todo.message }} le {{ todo.date }} </h4>
+                </div>
+
+            </div>
+        </div>
+        <form onsubmit="return valider()" name="formSaisie">
+            <div class="row justify-content-md-center mld-ldo-barres">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Messages :</label>
+                        <textarea v-model="msg" class="form-control rounded-0 textarea-ldo"
+                            id="exampleFormControlTextarea1" rows="2"></textarea>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Pseudo</label>
+                        <input v-model="psd" type="text" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" />
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">date</label>
+                        <input v-model="dt" type="text" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" />
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-md-center">
+                <div class="col mld-ldo-bt">
+                    <button v-on:click="addTodo" type="submit" class="btn btn-outline-dark">Envoyer</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div> `,
+data: function () {
+return ({
+psd: "",
+dt: "",
+msg: "",
+
+
+todos: [
+{
+pseudo: "martin",
+date: "07/10/2021",
+message: "ce site livraison rapide, et ont trouve tous les derniers Tomes",
+completed: false,
+}
+],
+})
+
+},
+methods: {
+del: function (index) {
+this.todos.splice(index, 1)
+},
+addTodo() {
+this.todos.push({ pseudo: this.psd, date: this.dt, message: this.msg, completed: false });
+},
+},
+
+}
